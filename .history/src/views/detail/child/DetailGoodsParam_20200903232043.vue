@@ -1,0 +1,77 @@
+<template>
+  <div class="param-info" v-if="Object.keys(paramInfo).length !== 0">
+    <p>参数信息</p>
+    <table :key="index" class="info-size" v-for="(table, index) in paramInfo.sizes">
+      <tr :key="indey" v-for="(tr, indey) in table">
+        <td :key="indez" v-for="(td, indez) in tr">{{ td }}</td>
+      </tr>
+    </table>
+
+    <table class="info-param">
+      <tr :key="index" v-for="(info, index) in paramInfo.infos">
+        <td class="info-param-key">{{ info.key }}</td>
+        <td class="param-value">{{ info.value }}</td>
+      </tr>
+    </table>
+
+    <div class="info-img" v-if="paramInfo.image.length !== 0">
+      <img :src="paramInfo.image" alt />
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    paramInfo: {
+      type: Object,
+      default() {
+        return;
+      },
+    },
+  },
+};
+</script>
+
+<style scoped>
+.param-info {
+  font-size: 0.875rem;
+  padding: 1.25rem 0.9375rem;
+  border-bottom: 0.3125rem solid #f2f5f8;
+}
+
+.param-info p {
+  font-size: 0.9375rem;
+  margin-bottom: 0.625rem;
+}
+
+.param-info table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.param-info table tr {
+  height: 2.625rem;
+}
+
+.param-info table tr td {
+  border-bottom: 0.0625rem solid rgba(100, 100, 100, 0.1);
+}
+
+.info-param-key {
+  /*当value的数据量比较大的时候, 会挤到key,所以给一个固定的宽度*/
+  width: 5.9375rem;
+}
+
+.info-param {
+  border-top: 0.0625rem solid rgba(0, 0, 0, 0.1);
+}
+
+.param-value {
+  color: #eb4868;
+}
+
+.info-img img {
+  width: 100%;
+}
+</style>

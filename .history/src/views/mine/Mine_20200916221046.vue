@@ -1,0 +1,37 @@
+<template>
+  <div class="mine">
+    <div class="nav-bar">
+      <div class="nav-bar-center">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import NavBar from "components/common/navbar/NavBar";
+export default {
+  components: {
+    NavBar,
+  },
+};
+</script>
+
+<style scoped>
+.nav-bar {
+  height: 150px;
+  line-height: 130px;
+  background: pink;
+}
+.nav-bar-center {
+  display: flex;
+  justify-content: space-around;
+}
+.nav-bar-center span {
+  flex: 1;
+  width: 50px;
+  text-align: center;
+}
+</style>
