@@ -10,27 +10,60 @@ const Mine = () => import('../views/mine/Mine.vue')
 const Sort = () => import('../views/sort/Sort.vue')
 const Detail = () => import('../views/detail/Detail.vue')
 
+
+const Shop = () => import('../views/mine/child/NavBar/subfield/Shop.vue')
+const Buy = () => import('../views/mine/child/NavBar/subfield/Buy.vue')
+const Record = () => import('../views/mine/child/NavBar/subfield/Record.vue')
+const Coupon = () => import('../views/mine/child/NavBar/subfield/Coupon.vue')
+
 const routes = [{
+    //默认首页
     path: '',
-    redirect: "/home"
+    redirect: "/home",
   }, {
+    //首页
     path: '/home',
     component: Home,
-
   }, {
+    //购物车
     path: '/cart',
     component: Cart
   }, {
+    //我的
     path: '/mine',
     component: Mine
   }, {
+    //分类
     path: '/sort',
     component: Sort,
   },
   {
+    //首页点击商品图片信息
     path: '/detail/:id',
     component: Detail
+  },
 
+
+  //我的-分栏
+  {
+    //商品收藏
+    path: '/shop',
+    component: Shop
+  },
+  {
+    //已购买
+    path: '/buy',
+    component: Buy,
+  },
+  {
+    //历史记录
+    path: '/record',
+    component: Record
+  },
+  {
+    //优惠券
+    path: '/coupon',
+    component: Coupon
   }
 ]
 
