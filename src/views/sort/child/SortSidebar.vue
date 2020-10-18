@@ -46,7 +46,6 @@ export default {
       } else if (index >= 10) {
         this.$refs.scroll.scrollTo(0, -165);
       }
-
       this.classIndex = index;
       //通知栏
       Notify({ type: "primary", message: this.SortList[index].title });

@@ -49,6 +49,8 @@ export default {
       this.$router.push("/detail/" + item.iid);
       //历史记录里点击的图片放至第一个
       this.$store.commit("pictureClick", item);
+      //收藏
+      this.$store.commit("collectClick", item.iid);
     },
   },
   activated() {
@@ -62,17 +64,17 @@ export default {
   height: 100vh;
 }
 .Record img {
-  height: 150px;
+  height: 9.375rem;
   width: 100%;
-  padding-bottom: 15px;
+  padding-bottom: 0.9375rem;
 }
 .left > img {
-  width: 40px;
-  height: 40px;
-  margin-top: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top: 0.3125rem;
 }
 .record-height {
-  height: calc(100% - 50px);
+  height: calc(100% - 3.125rem);
   overflow: hidden;
 }
 </style>

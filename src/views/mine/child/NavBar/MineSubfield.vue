@@ -52,12 +52,12 @@ export default {
 <style scoped>
 /* 分栏 */
 .nav-bar-top-subfield {
-  margin: 20px auto;
-  padding-top: 20px;
+  margin: 1.25rem auto;
+  padding-top: 1.25rem;
   background-color: #efefefef;
-  height: 70px;
-  width: 350px;
-  border-radius: 50px;
+  height: 4.375rem;
+  width: 21.875rem;
+  border-radius: 3.125rem;
 }
 .nav-bar-top-subfield ul {
   display: flex;
@@ -65,10 +65,10 @@ export default {
   text-align: center;
 }
 .nav-bar-top-subfield ul li {
-  width: 60px;
+  width: 3.75rem;
 }
 .nav-bar-top-subfield ul img {
-  height: 25px;
+  height: 1.5625rem;
 }
 h5 {
   margin: 0;

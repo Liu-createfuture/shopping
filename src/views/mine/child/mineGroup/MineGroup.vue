@@ -30,9 +30,7 @@ export default {
     };
   },
   methods: {
-    groupClick(index) {
-      console.log(index);
-    },
+    groupClick(index) {},
   },
 };
 </script>
@@ -40,9 +38,9 @@ export default {
 <style scoped>
 .mine-group {
   position: relative;
-  top: 55px;
-  height: 300px;
-  width: 350px;
+  top: 3.4375rem;
+  height: 18.75rem;
+  width: 21.875rem;
   margin: 0 auto;
 
   background-color: #efefefef;
@@ -51,26 +49,26 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 .mine-group ul li {
   flex: 1;
   text-indent: 1.5rem;
-  line-height: 60px;
-  border-bottom: 1px solid #ccccccfe;
+  line-height: 3.75rem;
+  border-bottom: 0.0625rem solid #ccccccfe;
 }
 .mine-group ul li img {
   vertical-align: text-top;
-  margin-right: 5px;
-  height: 18px;
+  margin-right: 0.3125rem;
+  height: 1.125rem;
 }
 .mine-group ul li img:last-child {
   position: absolute;
-  right: 25px;
-  margin-top: 21px;
+  right: 1.5625rem;
+  margin-top: 1.3125rem;
 }
 .mine-group ul li:last-child {
-  border-bottom: 0px;
+  border-bottom: 0rem;
 }
 h5 {
   text-align: center;

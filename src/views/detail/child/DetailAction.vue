@@ -11,8 +11,8 @@
       />
       <van-goods-action-icon
         icon="star"
-        :text="collect ? '收藏' : '已收藏'"
-        :color="collect ? '' : '#ff5000'"
+        :text="star ? '已收藏' : '收藏'"
+        :color="star ? '#ff5000' : ''"
         @click="Sclick"
       />
       <van-goods-action-button
@@ -53,16 +53,9 @@ export default {
         return;
       },
     },
-    shop: {
-      type: Object,
-      default() {
-        return;
-      },
-    },
   },
   data() {
     return {
-      collect: true,
       //库存
       stock: this.$store.state.stockCount,
       goodsId: this.product.iid,
@@ -85,6 +78,10 @@ export default {
   },
   computed: {
     ...mapGetters(["cartLength", "cartList"]),
+    //收藏
+    star() {
+      return this.$store.state.collectIon;
+    },
     goods() {
       // 默认商品 sku 缩略图
       return { picture: this.product.image };
@@ -158,7 +155,7 @@ export default {
   methods: {
     Sclick() {
       //收藏判断
-      this.collect = !this.collect;
+      this.$store.commit("collectIonClick", this.product);
     },
     shoppingCart() {
       //开启购物车

@@ -37,33 +37,31 @@
     </van-dropdown-menu>
     <!-- 滑动单元格 -->
     <scroll class="swipe-scroll" ref="scroll">
-      <van-swipe-cell
-        v-for="(item, index) in GoodsList"
-        :key="index"
-        class="slide-height"
-      >
-        <van-card
-          :num="item.selectedNum"
-          :price="Number(item.selectedSkuComb.price / 100).toFixed(2)"
-          :title="item.selectedSkuComb.name"
-          class="goods-card"
-          :thumb="item.selectedSkuComb.imgUrl"
-        />
-        <div class="date">{{ date + item.date }}</div>
-        <template #right>
-          <van-button
-            square
-            text="删除"
-            type="danger"
-            class="delete-button"
-            @click="deleteClick(item)"
+      <div v-for="(item, index) in GoodsList" :key="index" class="slide-height">
+        <van-swipe-cell v-if="item.checked ? false : true">
+          <van-card
+            :num="item.selectedNum"
+            :price="Number(item.selectedSkuComb.price / 100).toFixed(2)"
+            :title="item.selectedSkuComb.name"
+            class="goods-card"
+            :thumb="item.selectedSkuComb.imgUrl"
           />
-        </template>
-      </van-swipe-cell>
+          <div class="date">{{ date + item.date }}</div>
+          <template #right>
+            <van-button
+              square
+              text="删除"
+              type="danger"
+              class="delete-button"
+              @click="deleteClick(item)"
+            />
+          </template>
+        </van-swipe-cell>
+      </div>
       <!-- 空状态 -->
-      <van-empty v-show="Goods" />
-      <van-empty v-show="Goods" />
-      <van-empty v-show="Goods" />
+      <van-empty v-show="goods" />
+      <van-empty v-show="goods" />
+      <van-empty v-show="goods" />
     </scroll>
   </div>
 </template>
@@ -81,6 +79,8 @@ export default {
   mixins: [hideTabBer],
   data() {
     return {
+      //订单Dom是否存在
+      goods: "",
       //下拉菜单信息
       value1: 0,
       value2: "a",
@@ -115,9 +115,6 @@ export default {
   },
   computed: {
     ...mapGetters(["submitList", "submitListLength"]),
-    Goods() {
-      return this.submitListLength == 0;
-    },
   },
   methods: {
     //返回箭头
@@ -144,12 +141,20 @@ export default {
       this.showShare = false;
     },
     //删除
-    deleteClick(p) {
-      for (let i in this.submitList) {
-        if (this.submitList[i] === p) {
-          this.submitList.splice(i, 1);
+    deleteClick(item) {
+      item.checked = true;
+      this.domExist();
+    },
+    //判断是否存在订单Dom元素
+    domExist() {
+      let div = document.getElementsByClassName("goods-card");
+      this.$nextTick(() => {
+        if (div.length === 0) {
+          this.goods = true;
+        } else {
+          this.goods = false;
         }
-      }
+      });
     },
     //下拉菜单点击
     dropClick(value) {
@@ -189,6 +194,7 @@ export default {
     this.value1 = 0;
     this.value2 = "a";
     this.dropClick("a");
+    this.domExist();
   },
 };
 </script>
@@ -199,33 +205,33 @@ export default {
   overflow: hidden;
 }
 .buy-nar-bar > div img {
-  height: 40px;
-  margin-top: 5px;
+  height: 2.5rem;
+  margin-top: 0.3125rem;
 }
 input {
   width: 80%;
-  height: 25px;
-  border: 1px solid #dbdbdb;
-  font-size: 15px;
-  text-indent: 10px;
+  height: 1.5625rem;
+  border: 0.0625rem solid #dbdbdb;
+  font-size: 0.9375rem;
+  text-indent: 0.625rem;
   color: #cabfbfef;
-  border-radius: 50px;
-  padding-right: 30px;
+  border-radius: 3.125rem;
+  padding-right: 1.875rem;
 }
 input:focus {
-  border: 1px solid #03a9f4;
+  border: 0.0625rem solid #03a9f4;
   transition: 1s;
   color: black;
 }
 .Cross {
   position: absolute;
-  left: 280px;
+  left: 17.5rem;
   top: 0;
-  width: 20px;
+  width: 1.25rem;
 }
 .share {
-  margin-left: 20px;
-  width: 20px;
+  margin-left: 1.25rem;
+  width: 1.25rem;
 }
 .goods-card {
   margin: 0;
@@ -235,13 +241,13 @@ input:focus {
 }
 .date {
   position: absolute;
-  left: 112px;
-  top: 53px;
-  font-size: 12px;
+  left: 7rem;
+  top: 3.3125rem;
+  font-size: 0.75rem;
   color: #8f8e8eef;
 }
 .swipe-scroll {
-  height: calc(100% - 98px);
+  height: calc(100% - 6.125rem);
   overflow: hidden;
 }
 .slide-height {

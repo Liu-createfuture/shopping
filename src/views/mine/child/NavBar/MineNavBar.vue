@@ -31,46 +31,46 @@ export default {
 <style scoped>
 /* 头像 */
 h3 {
-  margin: 8px 0 0 10px;
-  height: 20px;
+  margin: 0.5rem 0 0 0.625rem;
+  height: 1.25rem;
 }
 .nav-bar {
-  height: 135px;
-  border-bottom: 2px solid #efefefef;
+  height: 8.4375rem;
+  border-bottom: 0.125rem solid #efefefef;
 }
 .nav-bar-top {
   display: flex;
-  height: 50px;
-  padding-top: 20px;
+  height: 3.125rem;
+  padding-top: 1.25rem;
 }
 .nav-bar-top-label {
   display: flex;
   align-items: flex-end;
   justify-content: space-evenly;
   position: absolute;
-  top: 50px;
-  left: 85px;
-  width: 200px;
-  height: 30px;
+  top: 3.125rem;
+  left: 5.3125rem;
+  width: 12.5rem;
+  height: 1.875rem;
 }
 .nav-bar-top-label li {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.1);
-  padding: 0 12px;
-  border-radius: 50px;
+  padding: 0 0.75rem;
+  border-radius: 3.125rem;
 }
 .nav-bar-top-right {
   position: absolute;
-  right: 20px;
+  right: 1.25rem;
 }
 .nav-bar-top > img {
-  height: 65px;
-  width: 65px;
-  margin: 0 10px;
+  height: 4.0625rem;
+  width: 4.0625rem;
+  margin: 0 0.625rem;
   border-radius: 50%;
 }
 .nav-bar-top-right > img {
-  height: 20px;
-  margin: 0 4px;
+  height: 1.25rem;
+  margin: 0 0.25rem;
 }
 </style>

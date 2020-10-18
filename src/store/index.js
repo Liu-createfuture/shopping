@@ -20,6 +20,14 @@ const state = {
     save: [],
     //库存数量
     stockCount: 100,
+    //收藏商品判断
+    collectIon: false,
+    //收藏的商品信息
+    collectIonStore: [],
+    //收藏店铺判断
+    followIon: false,
+    //收藏店铺信息
+    followStore: []
 }
 
 const store = new Vuex.Store({

@@ -41,7 +41,6 @@ export default {
       if (this.countIndex === index) return true;
     },
   },
-
 };
 </script>
 

@@ -39,13 +39,15 @@ export class Goods {
 
 //获取店家信息
 export class Shop {
-    constructor(shopInfo) {
+    constructor(shopInfo,iid) {
         this.logo = shopInfo.shopLogo
         this.name = shopInfo.name
         this.fans = shopInfo.cFans
         this.sells = shopInfo.cSells
         this.score = shopInfo.score
         this.goodsCount = shopInfo.cGoods
+        this.iid = iid;
+        this.follow = false
     }
 }
 
@@ -60,6 +62,7 @@ export class GoodsParam {
 }
 
 //获取购物车信息
+
 export class Product {
     constructor(topImages, goods, iid) {
         this.image = topImages[0];
@@ -67,5 +70,6 @@ export class Product {
         this.desc = goods.desc;
         this.price = goods.realPrice;
         this.iid = iid;
+        this.judge = false 
     }
 }

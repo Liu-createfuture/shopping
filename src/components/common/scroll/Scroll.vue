@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import { Toast } from "vant";
-
 import BScroll from "better-scroll";
 export default {
   data() {
@@ -55,11 +53,6 @@ export default {
     },
     finishPullUp() {
       this.scroll && this.scroll.finishPullUp(); //上拉加载更多,再进行更多的加载，fininshpullUp是插件里面的方法,
-      Toast.loading({
-        message: "加载中...",
-        forbidClick: true,
-        duration: 1000,
-      });
     },
     refresh() {
       this.scroll && this.scroll.refresh(); //scroll.refresh()是插件的重新计算高度的固定语法

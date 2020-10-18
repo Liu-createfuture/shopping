@@ -4,7 +4,11 @@
       <cart-bottom :ischecked="product.checked" @click.native="choiceClick" />
     </div>
     <div class="item-img">
-      <img :src="product.selectedSkuComb.imgUrl" alt="商品图片" @click="imgClick(product)" />
+      <img
+        :src="product.selectedSkuComb.imgUrl"
+        alt="商品图片"
+        @click="imgClick(product)"
+      />
     </div>
     <div class="item-info">
       <div class="item-title">{{ product.selectedSkuComb.name }}</div>
@@ -12,7 +16,12 @@
       <div class="info-bottom">
         <div class="item-price left">￥{{ monovalent }}</div>
         <div class="item-count right">X{{ number }}</div>
-        <van-button type="danger" class="item-click right" @click="deleteClick(product)">删除</van-button>
+        <van-button
+          type="danger"
+          class="item-click right"
+          @click="deleteClick(product)"
+          >删除</van-button
+        >
       </div>
     </div>
   </div>
@@ -70,6 +79,8 @@ export default {
     imgClick(product) {
       //点击图片跳转
       this.$router.push("/detail/" + product.selectedSkuComb.id);
+      //收藏
+      this.$store.commit("collectClick", product.selectedSkuComb.id);
     },
   },
 };

@@ -2,25 +2,33 @@
   <div class="shop-info">
     <div class="shop-top">
       <img :src="shop.logo" @load="imgHeight" />
-      <span class="title">{{shop.name}}</span>
+      <span class="title">{{ shop.name }}</span>
+      <span class="follow" v-if="followJudge" @click="followClick"
+        >已关注店铺</span
+      >
+      <span class="follow-too" v-else @click="followClick">关注店铺</span>
     </div>
     <div class="shop-middle">
       <div class="shop-middle-item shop-middle-left">
         <div class="info-sells">
-          <div class="sells-count">{{shop.sells}}</div>
+          <div class="sells-count">{{ shop.sells }}</div>
           <div class="sells-text">总销量</div>
         </div>
         <div class="info-goods">
-          <div class="goods-count">{{shop.goodsCount}}</div>
+          <div class="goods-count">{{ shop.goodsCount }}</div>
           <div class="goods-text">全部宝贝</div>
         </div>
       </div>
       <div class="shop-middle-item shop-middle-right">
         <table>
-          <tr v-for="(item,index) in shop.score" :key="index">
-            <td>{{item.name}}</td>
-            <td class="score" :class="{'score-better':item.isBetter}">{{item.score}}</td>
-            <td class="better" :class="{'better-more':item.isBetter}">{{item.isBetter?'高':'低'}}</td>
+          <tr v-for="(item, index) in shop.score" :key="index">
+            <td>{{ item.name }}</td>
+            <td class="score" :class="{ 'score-better': item.isBetter }">
+              {{ item.score }}
+            </td>
+            <td class="better" :class="{ 'better-more': item.isBetter }">
+              {{ item.isBetter ? "高" : "低" }}
+            </td>
           </tr>
         </table>
       </div>
@@ -41,9 +49,18 @@ export default {
       },
     },
   },
+  computed: {
+    followJudge() {
+      return this.$store.state.followIon;
+    },
+  },
   methods: {
     imgHeight() {
       this.$emit("imgItems");
+    },
+    //关注店铺
+    followClick() {
+      this.$store.commit("followClick", this.shop);
     },
   },
 };
@@ -60,6 +77,18 @@ export default {
 .shop-top img {
   height: 3.125rem;
   border-radius: 50%;
+}
+.follow,
+.follow-too {
+  position: absolute;
+  right: 35px;
+  padding: 5px 7px;
+  border-radius: 20px;
+  background-color: #ff5777;
+  font-weight: 600;
+}
+.follow-too {
+  background-color: #f2f5f8;
 }
 .title {
   margin-left: 0.625rem;

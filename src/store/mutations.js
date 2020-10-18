@@ -7,6 +7,10 @@ import {
 } from "./mutation-types";
 
 import {
+  Toast
+} from "vant";
+
+import {
   formatDate
 } from "common/utils";
 export default {
@@ -54,9 +58,9 @@ export default {
     });
     if (empty) {
       //点击重复的图片放到第一个
-      for (let value in state.save) {
-        if (state.save[value] === goodsItem) {
-          state.save.splice(value, 1);
+      for (let i in state.save) {
+        if (state.save[i] === goodsItem) {
+          state.save.splice(i, 1);
           state.save.splice(0, 0, empty);
         }
       }
@@ -65,4 +69,97 @@ export default {
       state.save.splice(0, 0, goodsItem);
     }
   },
-};
+  //收藏商品
+  collectIonClick(state, product) {
+    state.collectIon = !state.collectIon;
+    product.judge = state.collectIon;
+    if (product.judge === true) {
+      Toast({
+        type: "success",
+        message: `收藏成功`,
+        // 弹框的时候禁止点击
+        forbidClick: true,
+        duration: 1000
+      });
+    } else { 
+      Toast({
+        type: "success",
+        message: `取消收藏`,
+        // 弹框的时候禁止点击
+        forbidClick: true,
+        duration: 1000
+      });
+    }; 
+    state.collectIonStore.unshift(product)
+    let deWeightThree = () => {
+      let map = new Map();
+      for (let item of state.collectIonStore) {
+          if (!map.has(item.iid)) {
+              map.set(item.iid, item);
+          }
+      }
+      return [...map.values()];
+    }
+    state.collectIonStore = deWeightThree()
+    state.collectIonStore.some((item, i)=> {
+      if (item.iid === product.iid && item.judge === false) {
+        state.collectIonStore.splice(i, 1)  
+      } 
+    })
+  },
+  //关注店铺
+  followClick(state, product) {
+    state.followIon = !state.followIon;
+    product.follow = state.followIon;
+    if (product.follow === true) {
+      Toast({
+        type: "success",
+        message: `已关注`,
+        // 弹框的时候禁止点击
+        forbidClick: true,
+        duration: 1000,
+        icon: 'like-o'
+      });
+    } else { 
+      Toast({
+        type: "success",
+        message: `已取消`,
+        // 弹框的时候禁止点击
+        forbidClick: true,
+        duration: 1000,
+        icon: 'like-o'
+      });
+    }; 
+    state.followStore.unshift(product)   
+    let deWeightThree = () => {
+      let map = new Map();
+      for (let item of state.followStore) {
+          if (!map.has(item.iid)) {
+              map.set(item.iid, item);
+          }
+      }     
+      return [...map.values()];
+    }
+    state.followStore = deWeightThree()
+    state.followStore.some((item, i)=> {
+      if (item.iid === product.iid && item.follow === false) {
+        state.followStore.splice(i, 1)  
+      } 
+    })
+  },
+  //收藏/关注 判断
+  collectClick(state,iid) {
+       //商品收藏判断
+      state.collectIon = state.collectIonStore.some(
+        (item) => {
+          return iid === item.iid && item.judge === true;
+        }
+      );
+      //店铺关注判断
+      state.followIon = state.followStore.some(
+        (item) => {
+          return iid === item.iid && item.follow === true;
+        }
+      );
+   }
+}

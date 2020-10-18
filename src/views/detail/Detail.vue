@@ -16,7 +16,7 @@
       <goods-list :goods="recommends" ref="goodsInfo" />
     </scroll>
     <back-top @click.native="backClick" v-show="arrows" />
-    <detail-action class="detail-action" :product="product" :shop="shop" />
+    <detail-action class="detail-action" :product="product" />
   </div>
 </template>
 
@@ -61,6 +61,7 @@ export default {
       GoodsItemHeight: [],
       indexs: 0,
       product: {},
+      c: {},
     };
   },
   mixins: [mixin, arrow],
@@ -84,7 +85,6 @@ export default {
     getDetail(this.iid).then((res) => {
       //保存所有数据
       const data = res.result;
-
       //保存轮播图数据
       this.topImages = data.itemInfo.topImages;
 
@@ -94,9 +94,8 @@ export default {
         data.columns,
         data.shopInfo.services
       );
-
       //保存店家信息
-      this.shop = new Shop(data.shopInfo);
+      this.shop = new Shop(data.shopInfo, this.iid);
 
       //保存商品详细数据
       this.detailInfo = data.detailInfo;
@@ -106,19 +105,16 @@ export default {
         data.itemParams.info,
         data.itemParams.rule
       );
-
       //保存评论信息
       if (data.rate.cRate !== 0) {
         this.commentInfo = data.rate.list[0];
       }
-
       this.product = new Product(this.topImages, this.goods, this.iid);
     });
     //保存推荐信息
     getRecommend().then((res) => {
       this.recommends = res.data.list;
     });
-
     this.GoodsItemHeight = debouce(() => {
       this.GoodsImgHeight.push(0);
       this.GoodsImgHeight.push(this.$refs.paramInfo.$el.offsetTop);
@@ -127,7 +123,6 @@ export default {
       this.GoodsImgHeight.push(Number.MAX_VALUE);
     }, 300);
   },
-
   methods: {
     goodsImg() {
       //调用防抖

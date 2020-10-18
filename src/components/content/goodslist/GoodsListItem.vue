@@ -32,14 +32,17 @@ export default {
       //点击时添加路由,跳转到另外一个页面
       if (this.$route.path === "/home") {
         this.$router.push("/detail/" + this.goodsItem.iid);
-
         //库存
         this.$store.commit("stock_count", this.goodsItem.iid);
       }
       //发射点击事件
       this.$emit("itemClick");
+
       //历史记录事件
       this.$store.commit("pictureClick", this.goodsItem);
+
+      //收藏
+      this.$store.commit("collectClick", this.goodsItem.iid);
     },
     imgLoad() {
       //图片加载发送事件

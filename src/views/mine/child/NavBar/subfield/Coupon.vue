@@ -17,7 +17,7 @@
       v-model="showList"
       round
       position="bottom"
-      style="height: 90%; padding-top: 4px;"
+      style="height: 90%; padding-top: 0.25rem"
     >
       <van-coupon-list
         :coupons="coupons"
@@ -82,8 +82,8 @@ export default {
 
 <style scoped>
 .coupon-nar-bar div > img {
-  height: 40px;
-  width: 40px;
-  margin-top: 5px;
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-top: 0.3125rem;
 }
 </style>
